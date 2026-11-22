@@ -15,3 +15,4 @@ import Thesis.SpineIndex
 import Thesis.RootedTree
 import Thesis.TreeEquality
 import Thesis.ZagrebBounds
+import Thesis.CaterpillarModel

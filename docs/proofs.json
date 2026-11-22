@@ -59,6 +59,10 @@
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.claim3"
   },
+  "spine_realization": {
+    "file": "Thesis/CaterpillarModel.lean",
+    "theorem": "Thesis.Trees.perm_realization"
+  },
   "thm01centralpalindrome": {
     "file": "Thesis/WordPalindromes.lean",
     "theorem": "Thesis.Words.truncated_palindrome"

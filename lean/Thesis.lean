@@ -12,3 +12,4 @@ import Thesis.OneReturns
 import Thesis.BiperiodicWord
 import Thesis.SpinePath
 import Thesis.SpineIndex
+import Thesis.RootedTree

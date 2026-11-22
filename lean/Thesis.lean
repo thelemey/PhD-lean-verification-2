@@ -20,3 +20,4 @@ import Thesis.AlbertsonVariation
 import Thesis.AlbertsonMaximum
 import Thesis.GutmanSpine
 import Thesis.GutmanSwap
+import Thesis.GutmanExample

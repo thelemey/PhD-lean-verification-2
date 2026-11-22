@@ -65,7 +65,7 @@ private theorem orientation_asymm (ht : G.IsTree) (root : V) {u v : V}
 
 /-- An edge sum over both orientations equals twice the sum over nonroot children.
 This reindexing works for any symmetric integer weight. -/
-theorem rooted_edge_sum [Fintype V] (ht : G.IsTree) (root : V)
+theorem rooted_edge_sum [Fintype V] [DecidableEq V] (ht : G.IsTree) (root : V)
     (f : V → V → ℤ) (hs : ∀ u v, f u v = f v u) :
     (∑ u, ∑ v, if G.Adj u v then f u v else 0) =
       2*∑ v ∈ univ.erase root, f v (parent ht root v) := by

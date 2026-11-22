@@ -1,14 +1,30 @@
 {
   "boundbipartitegraph": {
-    "theorem": "Thesis.Bipartite.bounds_and_equality",
-    "file": "Thesis/BipartiteBounds.lean"
+    "file": "Thesis/BipartiteBounds.lean",
+    "theorem": "Thesis.Bipartite.bounds_and_equality"
   },
   "claim6": {
-    "theorem": "Thesis.Bipartite.claim6",
-    "file": "Thesis/BipartiteBounds.lean"
+    "file": "Thesis/BipartiteBounds.lean",
+    "theorem": "Thesis.Bipartite.claim6"
+  },
+  "lem01length": {
+    "file": "Thesis/WordMorphism.lean",
+    "theorem": "Thesis.Words.morph_length"
+  },
+  "prop01fabisstandard": {
+    "file": "Thesis/WordMorphism.lean",
+    "theorem": "Thesis.Words.alternating_standard"
+  },
+  "thm01desub": {
+    "file": "Thesis/WordMorphism.lean",
+    "theorem": "Thesis.Words.word_morphism"
   },
   "thm1sigmaindexbipartite01": {
-    "theorem": "Thesis.Bipartite.sigma_complete",
-    "file": "Thesis/BipartiteBounds.lean"
+    "file": "Thesis/BipartiteBounds.lean",
+    "theorem": "Thesis.Bipartite.sigma_complete"
+  },
+  "word_initial": {
+    "file": "Thesis/WordMorphism.lean",
+    "theorem": "Thesis.Words.limitWord_unique"
   }
 }

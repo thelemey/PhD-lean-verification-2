@@ -143,6 +143,10 @@
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.sigma_complete"
   },
+  "ThmSigmairregularityn1": {
+    "file": "Thesis/SigmaMinimum.lean",
+    "theorem": "Thesis.Trees.sigma_degree_lower"
+  },
   "thmalbertsonn5": {
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.max_degree_lower"

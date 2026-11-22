@@ -1,6 +1,7 @@
 name = "thesis"
 version = "0.1.0"
 defaultTargets = ["Thesis"]
+moreLeanArgs = ["-DwarningAsError=true"]
 
 [[require]]
 name = "mathlib"

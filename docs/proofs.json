@@ -163,6 +163,10 @@
     "file": "Thesis/SigmaEquality.lean",
     "theorem": "Thesis.Trees.sigma_bound_equality"
   },
+  "thmSigman4": {
+    "file": "Thesis/SigmaGeneralBounds.lean",
+    "theorem": "Thesis.Trees.sigma_irregularity_bounds"
+  },
   "word_initial": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.limitWord_unique"

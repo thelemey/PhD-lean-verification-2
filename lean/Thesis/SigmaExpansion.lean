@@ -26,7 +26,7 @@ theorem value_mono {d : List ℕ} (hs : d.Pairwise (· ≤ ·)) {i j : ℕ} (h :
   rw [getElem!_pos z i h₁,getElem!_pos z j h₂]
   exact List.pairwise_iff_getElem.mp sorted i j h₁ h₂ (by omega)
 
-private theorem positive_rank_value {d : List ℕ} (hd : Admissible d) {i : ℕ} (hi : 1 ≤ i) (hk : i ≤ d.length) :
+theorem rankValue_succ_int {d : List ℕ} (hd : Admissible d) {i : ℕ} (hi : 1 ≤ i) (hk : i ≤ d.length) :
     (rankValue d i : ℤ) = (d[i-1]!:ℤ)-1 := by
   obtain ⟨j,rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : i≠0)
   have hj : j<d.length := by omega
@@ -51,7 +51,7 @@ theorem sigma_rank_score {d r : List ℕ} (hd : Admissible d) (hr : r.Perm (List
     apply List.map_congr_left
     intro i hi
     have H := (rank_mem hr i).mp hi
-    exact (positive_rank_value hd H.1 H.2).symm
+    exact (rankValue_succ_int hd H.1 H.2).symm
   rw [eq]
   have h := route_map squareDiff (fun i => (rankValue d i:ℤ)) 0 r 0
   simpa [rankEnergy] using congrArg (sigmaBase d + ·) h

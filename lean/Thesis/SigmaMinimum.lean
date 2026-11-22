@@ -152,6 +152,48 @@ theorem sigma_minimum_formula (d : List ℕ) (hd : Admissible d) (hs : d.Pairwis
   rw [← eq]
   exact sigma_minimum d hd hs
 
+/-- Theorem 3.3.4. Dropping the nonnegative interior terms from the exact minimum
+leaves the two smallest shifted degrees and the gap between the two largest ones. -/
+theorem sigma_endpoint_lower {d x : List ℕ} (hd : Admissible d) (hs : d.Pairwise (· ≤ ·))
+    (hx : x.Perm d) {k : ℕ} (G : Graph k) (hG : Realizes G x) (n : ℕ)
+    (hn : d.length=n+2) :
+    sigmaBase d + (rankValue d 1)^2 + (rankValue d 2)^2 +
+      (rankValue d (n+1)-rankValue d (n+2))^2 ≤ edgeIndex G 2 := by
+  let v (i : ℕ) : ℤ := rankValue d i
+  let tail := ((List.range (n+1)).map (fun i => (v i-v (i+2))^2)).sum
+  let m := sigmaBase d + ((v 1)^2 + (v (n+1)-v (n+2))^2 + tail)
+  have least := (sigma_minimum_formula d hd hs n hn).2
+  have hm : m ≤ edgeIndex G 2 := least.2 ⟨k,G,x,hx,hG,rfl⟩
+  have zero_mem : 0 ∈ List.range (n+1) := by simp
+  have term_mem : (v 0-v 2)^2 ∈ (List.range (n+1)).map (fun i => (v i-v (i+2))^2) :=
+    List.mem_map.mpr ⟨0,zero_mem,rfl⟩
+  have htail : (v 2)^2 ≤ tail := by
+    have h := List.single_le_sum (fun z hz => by
+      obtain ⟨i,_,rfl⟩ := List.mem_map.mp hz
+      exact sq_nonneg _) _ term_mem
+    simpa [tail,v] using h
+  dsimp [m] at hm
+  change sigmaBase d + (v 1)^2 + (v 2)^2 + (v (n+1)-v (n+2))^2 ≤ edgeIndex G 2
+  linarith
+
+/-- The same lower bound in the degree notation of Theorem 3.3.4. -/
+theorem sigma_degree_lower {d x : List ℕ} (hd : Admissible d) (hs : d.Pairwise (· ≤ ·))
+    (hx : x.Perm d) {k : ℕ} (G : Graph k) (hG : Realizes G x) (n : ℕ)
+    (hn : d.length=n+2) :
+    sigmaBase d + ((d[0]!:ℤ)-1)^2 + ((d[1]!:ℤ)-1)^2 +
+      ((d[n+1]!:ℤ)-d[n]!)^2 ≤ edgeIndex G 2 := by
+  have h := sigma_endpoint_lower hd hs hx G hG n hn
+  rw [rankValue_succ_int hd (i:=1) (by omega) (by omega),
+    rankValue_succ_int hd (i:=2) (by omega) (by omega),
+    rankValue_succ_int hd (i:=n+1) (by omega) (by omega),
+    rankValue_succ_int hd (i:=n+2) (by omega) (by omega)] at h
+  norm_num at h
+  simp only [List.getElem!_eq_getElem?_getD]
+  change sigmaBase d + (((d[0]?.getD 0:ℕ):ℤ)-1)^2 +
+    (((d[1]?.getD 0:ℕ):ℤ)-1)^2 +
+    (((d[n+1]?.getD 0:ℕ):ℤ)-(d[n]?.getD 0:ℕ))^2 ≤ edgeIndex G 2
+  nlinarith
+
 /-- Proposition 3.3.5 compares any two realizations with the prescribed orders. -/
 theorem zigzag_score_le {d x : List ℕ} (hd : Admissible d) (hs : d.Pairwise (· ≤ ·)) (hx : x.Perm d)
     {n m : ℕ} (G : Graph n) (F : Graph m) (hG : Realizes G (rankOrder d (zigzagRanks d.length)))

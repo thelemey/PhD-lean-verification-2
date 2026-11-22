@@ -19,3 +19,4 @@ import Thesis.CaterpillarModel
 import Thesis.AlbertsonVariation
 import Thesis.AlbertsonMaximum
 import Thesis.GutmanSpine
+import Thesis.GutmanSwap

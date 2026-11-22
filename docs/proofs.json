@@ -63,6 +63,10 @@
     "file": "Thesis/AlbertsonVariation.lean",
     "theorem": "Thesis.Trees.albertson_variation"
   },
+  "lems001wap": {
+    "file": "Thesis/GutmanSwap.lean",
+    "theorem": "Thesis.Trees.swap_formula"
+  },
   "prop01fabisstandard": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"

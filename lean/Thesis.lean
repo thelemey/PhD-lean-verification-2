@@ -17,3 +17,4 @@ import Thesis.TreeEquality
 import Thesis.ZagrebBounds
 import Thesis.CaterpillarModel
 import Thesis.AlbertsonVariation
+import Thesis.AlbertsonMaximum

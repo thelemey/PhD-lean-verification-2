@@ -79,7 +79,7 @@ private theorem spine_arithmetic (r : ℕ) (x : List ℕ) (hx : x ≠ []) :
       leafWeight ((u::s).getLast!) r + _
     linarith [split (u::s)]
 
-private theorem sum_incidence {n : ℕ} (G : Graph n) (f : Fin n → ℤ) (u : Fin n) :
+theorem sum_incidence {n : ℕ} (G : Graph n) (f : Fin n → ℤ) (u : Fin n) :
     (∑ v, if G.Adj u v then f u else 0) = (degree G u : ℤ)*f u := by
   classical
   rw [← Finset.sum_filter, ← G.neighborFinset_eq_filter]

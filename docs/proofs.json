@@ -39,6 +39,10 @@
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.morph_length"
   },
+  "lemleaves": {
+    "file": "Thesis/RootedTree.lean",
+    "theorem": "Thesis.Trees.leaf_count"
+  },
   "prop01fabisstandard": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"

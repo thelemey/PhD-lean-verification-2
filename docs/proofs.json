@@ -7,6 +7,10 @@
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.claim6"
   },
+  "cor002arbitrary": {
+    "file": "Thesis/PalindromeRecords.lean",
+    "theorem": "Thesis.Words.palindrome_records"
+  },
   "cor01sturmian": {
     "file": "Thesis/WordSlope.lean",
     "theorem": "Thesis.Words.characteristic_slope"

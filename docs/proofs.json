@@ -75,6 +75,10 @@
     "file": "Thesis/GutmanSwap.lean",
     "theorem": "Thesis.Trees.swap_formula"
   },
+  "lemsigred": {
+    "file": "Thesis/SigmaCycle.lean",
+    "theorem": "Thesis.Trees.sigma_cycle"
+  },
   "prop01fabisstandard": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"

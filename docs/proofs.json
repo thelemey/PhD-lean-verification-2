@@ -91,6 +91,10 @@
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.claim3"
   },
+  "relationn1pro": {
+    "file": "Thesis/SigmaMinimum.lean",
+    "theorem": "Thesis.Trees.zigzag_score_le"
+  },
   "sigma_cut_bounds": {
     "file": "Thesis/RankCuts.lean",
     "theorem": "Thesis.Trees.cut_lower_bounds"
@@ -142,6 +146,10 @@
   "thmext": {
     "file": "Thesis/AlbertsonMaximum.lean",
     "theorem": "Thesis.Trees.claim2"
+  },
+  "thmsigmin": {
+    "file": "Thesis/SigmaMinimum.lean",
+    "theorem": "Thesis.Trees.sigma_minimum_formula"
   },
   "word_initial": {
     "file": "Thesis/WordMorphism.lean",

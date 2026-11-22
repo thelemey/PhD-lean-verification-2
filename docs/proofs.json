@@ -11,6 +11,10 @@
     "file": "Thesis/PalindromeRecords.lean",
     "theorem": "Thesis.Words.palindrome_records"
   },
+  "cor01returnduality": {
+    "file": "Thesis/OneReturns.lean",
+    "theorem": "Thesis.Words.return_duality"
+  },
   "cor01sturmian": {
     "file": "Thesis/WordSlope.lean",
     "theorem": "Thesis.Words.characteristic_slope"
@@ -42,6 +46,10 @@
   "thm02freqduality": {
     "file": "Thesis/WordFrequency.lean",
     "theorem": "Thesis.Words.letter_frequencies"
+  },
+  "thm02return1": {
+    "file": "Thesis/OneReturns.lean",
+    "theorem": "Thesis.Words.one_returns"
   },
   "thm1sigmaindexbipartite01": {
     "file": "Thesis/BipartiteBounds.lean",

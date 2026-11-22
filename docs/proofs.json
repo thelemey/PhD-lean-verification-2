@@ -31,6 +31,10 @@
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.word_morphism"
   },
+  "thm01return0": {
+    "file": "Thesis/ZeroReturns.lean",
+    "theorem": "Thesis.Words.zero_returns"
+  },
   "thm01slopecf": {
     "file": "Thesis/WordSlope.lean",
     "theorem": "Thesis.Words.characteristic_slope"

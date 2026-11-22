@@ -1,5 +1,6 @@
 import Thesis.RootedTree
 import Thesis.TreeDistanceLiterature
+import Thesis.TreeDistanceProof
 
 namespace Thesis.Trees
 
@@ -45,7 +46,7 @@ def gutmanScore (x : List ℕ) : ℤ :=
 
 theorem gutman_spine {n : ℕ} (G : Graph n) (x : List ℕ) (hx : Admissible x) (hG : Realizes G x) :
     gutman G = gutmanScore x := by
-  rw [Literature.tree_gutman_wiener G hG.1,Literature.caterpillar_wiener G x hx hG,
+  rw [tree_gutman_wiener_proved G hG.1,Literature.caterpillar_wiener G x hx hG,
       realization_order G x hx hG]
   rfl
 

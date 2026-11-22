@@ -14,12 +14,6 @@ def cutProducts (w : List ℤ) : ℤ := ((List.range (w.length-1)).map fun i =>
 
 namespace Literature
 
-/-- Eu, Yang & Yeh, Generalized Wiener Indices in Hexagonal Chains, theorem 1.
-The modified Schultz index is the degree-product weighted distance sum.
-https://www.iis.sinica.edu.tw/papers/byyang/2380-F.pdf -/
-axiom tree_gutman_wiener {n : ℕ} (G : Graph n) (ht : G.IsTree) :
-  gutman G = 4*wiener G - ((n:ℤ)-1)*(2*n-1)
-
 /-- X.-D. Zhang, Y. Liu & M.-X. Han, The Maximum Wiener Index of Trees with
 Given Degree Sequences, lemma 2.2, equations (2) and (3), pp. 4–5.
 https://arxiv.org/pdf/0907.3772 -/

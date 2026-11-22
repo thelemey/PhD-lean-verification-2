@@ -83,6 +83,10 @@
     "file": "Thesis/SigmaCycle.lean",
     "theorem": "Thesis.Trees.sigma_cycle"
   },
+  "lemn1gut": {
+    "file": "Thesis/TreeDistanceProof.lean",
+    "theorem": "Thesis.Trees.tree_gutman_wiener_proved"
+  },
   "prop01fabisstandard": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"

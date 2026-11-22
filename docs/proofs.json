@@ -95,6 +95,10 @@
     "file": "Thesis/RankCuts.lean",
     "theorem": "Thesis.Trees.cut_lower_bounds"
   },
+  "sigma_zigzag_count": {
+    "file": "Thesis/ZigzagCuts.lean",
+    "theorem": "Thesis.Trees.zigzag_crossings_ordered"
+  },
   "spine_realization": {
     "file": "Thesis/CaterpillarModel.lean",
     "theorem": "Thesis.Trees.perm_realization"

@@ -25,3 +25,4 @@ import Thesis.SigmaCycle
 import Thesis.RankCuts
 import Thesis.ZigzagCuts
 import Thesis.SigmaExpansion
+import Thesis.SigmaMinimum

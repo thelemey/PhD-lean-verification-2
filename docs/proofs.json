@@ -1,1 +1,14 @@
-{}
+{
+  "boundbipartitegraph": {
+    "theorem": "Thesis.Bipartite.bounds_and_equality",
+    "file": "Thesis/BipartiteBounds.lean"
+  },
+  "claim6": {
+    "theorem": "Thesis.Bipartite.claim6",
+    "file": "Thesis/BipartiteBounds.lean"
+  },
+  "thm1sigmaindexbipartite01": {
+    "theorem": "Thesis.Bipartite.sigma_complete",
+    "file": "Thesis/BipartiteBounds.lean"
+  }
+}

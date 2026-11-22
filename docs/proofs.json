@@ -3,6 +3,10 @@
     "file": "Thesis/SpineIndex.lean",
     "theorem": "Thesis.Trees.index_endpoints"
   },
+  "Thmcor01": {
+    "file": "Thesis/AlbertsonMaximum.lean",
+    "theorem": "Thesis.Trees.albertson_maximum"
+  },
   "boundbipartitegraph": {
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.bounds_and_equality"
@@ -10,6 +14,10 @@
   "claim1": {
     "file": "Thesis/SpineIndex.lean",
     "theorem": "Thesis.Trees.claim1"
+  },
+  "claim2": {
+    "file": "Thesis/AlbertsonMaximum.lean",
+    "theorem": "Thesis.Trees.claim2"
   },
   "claim3": {
     "file": "Thesis/ZagrebBounds.lean",
@@ -98,6 +106,10 @@
   "thmalbertsonn5": {
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.max_degree_lower"
+  },
+  "thmext": {
+    "file": "Thesis/AlbertsonMaximum.lean",
+    "theorem": "Thesis.Trees.claim2"
   },
   "word_initial": {
     "file": "Thesis/WordMorphism.lean",

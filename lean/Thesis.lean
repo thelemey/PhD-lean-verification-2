@@ -9,3 +9,4 @@ import Thesis.WordFrequency
 import Thesis.PalindromeRecords
 import Thesis.ZeroReturns
 import Thesis.OneReturns
+import Thesis.BiperiodicWord

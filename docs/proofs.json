@@ -47,6 +47,10 @@
     "file": "Thesis/RootedTree.lean",
     "theorem": "Thesis.Trees.leaf_count"
   },
+  "lemred0005": {
+    "file": "Thesis/AlbertsonVariation.lean",
+    "theorem": "Thesis.Trees.albertson_variation"
+  },
   "prop01fabisstandard": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"

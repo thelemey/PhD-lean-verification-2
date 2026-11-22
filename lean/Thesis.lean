@@ -16,3 +16,4 @@ import Thesis.RootedTree
 import Thesis.TreeEquality
 import Thesis.ZagrebBounds
 import Thesis.CaterpillarModel
+import Thesis.AlbertsonVariation

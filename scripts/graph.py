@@ -53,6 +53,14 @@ def read_graph():
     # §1.3(7) states the closed form explicitly. Theorem 6.3.2 proves that identity.
     edges.append(dict(a="thm01slopecf", b="claim7", kind="reconstructed",
                       evidence=["Формула наклона в положении 7 совпадает с (6.6), с. 58."]))
+    nodes["spine_realization"] = dict(short="§ 1.2", title="Реализуемость любого порядка степеней хребта",
+                                     page="5", chapter=1, statement="Каждая перестановка списка полных "
+                                     "степеней хребта длины не менее двух со значениями от двух "
+                                     "реализуется гусеницей.")
+    for target in ["thmext", "thmsigmin001", "exgutlocal"]:
+        edges.append(dict(a="spine_realization", b=target, kind="reconstructed",
+                          evidence=["§ 1.2, с. 5. Каждый использованный порядок степеней "
+                                    "реализуется гусеницей."]))
     assert all(e["a"] in nodes and e["b"] in nodes for e in edges)
     return dict(nodes=nodes, edges=edges, groups=data["groups"], defence=DEFENCE)
 

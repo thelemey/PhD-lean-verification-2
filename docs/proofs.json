@@ -103,6 +103,10 @@
     "file": "Thesis/SigmaZagreb.lean",
     "theorem": "Thesis.Trees.sigma_zagreb_lower"
   },
+  "proSigmaCaterpillarn1": {
+    "file": "Thesis/SigmaUniform.lean",
+    "theorem": "Thesis.Trees.sigma_uniform_formula"
+  },
   "propzagreb": {
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.claim3"

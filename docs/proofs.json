@@ -95,6 +95,10 @@
     "file": "Thesis/RankCuts.lean",
     "theorem": "Thesis.Trees.cut_lower_bounds"
   },
+  "sigma_gap_expansion": {
+    "file": "Thesis/SigmaExpansion.lean",
+    "theorem": "Thesis.Trees.sigma_cut_expansion"
+  },
   "sigma_zigzag_count": {
     "file": "Thesis/ZigzagCuts.lean",
     "theorem": "Thesis.Trees.zigzag_crossings_ordered"

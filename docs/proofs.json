@@ -23,6 +23,10 @@
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.claim3"
   },
+  "claim5": {
+    "file": "Thesis/GutmanExample.lean",
+    "theorem": "Thesis.Trees.claim5"
+  },
   "claim6": {
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.claim6"
@@ -46,6 +50,10 @@
   "cortreen1": {
     "file": "Thesis/SpinePath.lean",
     "theorem": "Thesis.Trees.tree_edge_count"
+  },
+  "exgutlocal": {
+    "file": "Thesis/GutmanExample.lean",
+    "theorem": "Thesis.Trees.gutman_local_example"
   },
   "gutman_spine_value": {
     "file": "Thesis/GutmanSpine.lean",

@@ -73,6 +73,13 @@ def read_graph():
                                      "одновременно пересекает хотя бы одно ребро.")
     edges.append(dict(a="sigma_cut_bounds", b="thmsigmin001", kind="reconstructed",
                       evidence=["Доказательство теоремы 3.3.3, с. 30."]))
+    nodes["sigma_zigzag_count"] = dict(short="§ 3.1", title="Точные коэффициенты разрезов зигзага",
+                                       page="22", chapter=3, statement="Цикл зигзага "
+                                       "пересекает каждый диагональный разрез дважды, каждую "
+                                       "пару соседних разрезов один раз и остальные пары ноль раз.")
+    for target in ["thmsigmin", "thmsigmin001"]:
+        edges.append(dict(a="sigma_zigzag_count", b=target, kind="reconstructed",
+                          evidence=["Описание рёбер зигзага в доказательствах на с. 22 и 30."]))
     assert all(e["a"] in nodes and e["b"] in nodes for e in edges)
     return dict(nodes=nodes, edges=edges, groups=data["groups"], defence=DEFENCE)
 

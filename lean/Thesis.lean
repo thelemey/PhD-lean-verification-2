@@ -23,3 +23,4 @@ import Thesis.GutmanSwap
 import Thesis.GutmanExample
 import Thesis.SigmaCycle
 import Thesis.RankCuts
+import Thesis.ZigzagCuts

@@ -91,6 +91,10 @@
     "file": "Thesis/SpineIndex.lean",
     "theorem": "Thesis.Trees.index_endpoints"
   },
+  "propsigM1": {
+    "file": "Thesis/SigmaZagreb.lean",
+    "theorem": "Thesis.Trees.sigma_zagreb_lower"
+  },
   "propzagreb": {
     "file": "Thesis/ZagrebBounds.lean",
     "theorem": "Thesis.Trees.claim3"

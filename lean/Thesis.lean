@@ -28,3 +28,4 @@ import Thesis.SigmaExpansion
 import Thesis.SigmaMinimum
 import Thesis.SigmaEquality
 import Thesis.SigmaGeneralBounds
+import Thesis.SigmaZagreb

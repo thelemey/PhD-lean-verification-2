@@ -1,7 +1,15 @@
 {
+  "Caterpillar": {
+    "file": "Thesis/SpineIndex.lean",
+    "theorem": "Thesis.Trees.index_endpoints"
+  },
   "boundbipartitegraph": {
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.bounds_and_equality"
+  },
+  "claim1": {
+    "file": "Thesis/SpineIndex.lean",
+    "theorem": "Thesis.Trees.claim1"
   },
   "claim6": {
     "file": "Thesis/BipartiteBounds.lean",
@@ -34,6 +42,10 @@
   "prop01fabisstandard": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"
+  },
+  "propsigmaspine": {
+    "file": "Thesis/SpineIndex.lean",
+    "theorem": "Thesis.Trees.index_endpoints"
   },
   "thm01centralpalindrome": {
     "file": "Thesis/WordPalindromes.lean",

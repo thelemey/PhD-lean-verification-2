@@ -15,6 +15,10 @@
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.alternating_standard"
   },
+  "thm01centralpalindrome": {
+    "file": "Thesis/WordPalindromes.lean",
+    "theorem": "Thesis.Words.truncated_palindrome"
+  },
   "thm01desub": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.word_morphism"

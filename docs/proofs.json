@@ -23,6 +23,10 @@
     "file": "Thesis/WordSlope.lean",
     "theorem": "Thesis.Words.characteristic_slope"
   },
+  "cortreen1": {
+    "file": "Thesis/SpinePath.lean",
+    "theorem": "Thesis.Trees.tree_edge_count"
+  },
   "lem01length": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.morph_length"

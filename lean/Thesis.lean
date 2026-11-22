@@ -10,3 +10,4 @@ import Thesis.PalindromeRecords
 import Thesis.ZeroReturns
 import Thesis.OneReturns
 import Thesis.BiperiodicWord
+import Thesis.SpinePath

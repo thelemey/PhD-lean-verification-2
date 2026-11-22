@@ -1,5 +1,11 @@
 name: Verify thesis
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -14,7 +20,10 @@ jobs:
       - name: Build all statements and proofs
         working-directory: lean
         run: |
-          lake exe cache get Thesis
+          mapfile -t imports < <(git grep -h '^import Mathlib' -- '*.lean' | awk '{print $2}' | sort -u)
+          lake exe cache get "${imports[@]}"
           lake build
-      - name: Check graph colours and proof declarations
+      - name: Install PDF reader
+        run: python3 -m pip install "pypdf>=5,<7"
+      - name: Check HTML, SVG, PDF and proof declarations
         run: python3 scripts/graph.py --check --audit

@@ -8,6 +8,8 @@ import tempfile
 import textwrap
 from pathlib import Path
 
+from graph_exports import export_graphs
+
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 HTML = DOCS / "dependency_graph.html"
@@ -175,6 +177,7 @@ def main():
             raise SystemExit("Graph is stale. Run python3 scripts/graph.py")
     else:
         HTML.write_text(output)
+    export_graphs(DOCS, data, geometry["views"], proofs, args.check)
     if args.audit:
         audit(data["nodes"], proofs)
 

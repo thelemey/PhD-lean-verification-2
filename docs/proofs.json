@@ -31,6 +31,10 @@
     "file": "Thesis/WordSlope.lean",
     "theorem": "Thesis.Words.characteristic_slope"
   },
+  "thm02freqduality": {
+    "file": "Thesis/WordFrequency.lean",
+    "theorem": "Thesis.Words.letter_frequencies"
+  },
   "thm1sigmaindexbipartite01": {
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.sigma_complete"

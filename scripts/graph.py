@@ -80,6 +80,12 @@ def read_graph():
     for target in ["thmsigmin", "thmsigmin001"]:
         edges.append(dict(a="sigma_zigzag_count", b=target, kind="reconstructed",
                           evidence=["Описание рёбер зигзага в доказательствах на с. 22 и 30."]))
+    nodes["sigma_gap_expansion"] = dict(short="Ф 3.6", title="Квадратичная сумма через промежутки между рангами",
+                                        page="22", chapter=3, statement="Q(C) равно двойной сумме "
+                                        "gⱼ gₗ N_C(j,l) по всем упорядоченным парам промежутков.")
+    for target in ["thmsigmin", "thmsigmin001"]:
+        edges.append(dict(a="sigma_gap_expansion", b=target, kind="reconstructed",
+                          evidence=["Разложение (3.6), с. 22, и доказательство критерия на с. 30."]))
     assert all(e["a"] in nodes and e["b"] in nodes for e in edges)
     return dict(nodes=nodes, edges=edges, groups=data["groups"], defence=DEFENCE)
 

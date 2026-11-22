@@ -1,0 +1,20 @@
+name: Verify thesis
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.1.2/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build all statements and proofs
+        working-directory: lean
+        run: |
+          lake exe cache get Thesis
+          lake build
+      - name: Check graph colours and proof declarations
+        run: python3 scripts/graph.py --check --audit

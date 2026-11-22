@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Граф зависимостей диссертации</title>
+<style>
+:root{font:16px/1.45 system-ui,sans-serif;color:#162d3a;background:#faf9f5;--red:#f4b3ac;--green:#a3dbb3;--gold:#f6cc55;--pending:#b33532;--done:#197146}
+*{box-sizing:border-box}body{margin:0}header{padding:20px clamp(14px,3vw,46px) 12px;border-bottom:1px solid #d4d8d5;background:#fff}h1{font:600 clamp(21px,2.2vw,31px)/1.2 Georgia,serif;margin:0}header p{margin:4px 0;color:#54676f;font-size:14px}
+nav,.legend,.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap}nav{padding:12px clamp(14px,3vw,46px)}label,small,.legend{font-size:13px}button,select,input{font:inherit;padding:5px 8px;border:1px solid #bcc6c8;border-radius:4px;color:inherit;background:#fff}button{cursor:pointer}button:hover{background:#e6eee9}input{max-width:100%}a{color:#135e75}
+main{display:grid;grid-template-columns:minmax(0,1fr) 335px;border-block:1px solid #cad2d1;background:#fff;height:calc(100vh - 185px);min-height:390px}article{display:flex;min-width:0;flex-direction:column}aside{border-left:1px solid #cad2d1;overflow:auto;padding:14px 18px}h2{font:600 20px/1.25 Georgia,serif;margin:6px 0 12px}h3{font-size:14px;margin:18px 0 6px}.tools{padding:5px 12px;gap:6px}.tools small{margin-left:auto}svg{width:100%;height:100%;min-height:0;flex:1;background:#fafbf9;touch-action:none;cursor:grab}.node{cursor:pointer}.node:focus rect,.node:hover rect,.node.selected rect{filter:drop-shadow(0 0 3px #4b5c69)}.node.selected rect{stroke-dasharray:7 2}.node text{pointer-events:none;user-select:none}
+.legend{padding:9px 14px;color:#45575d}.swatch{display:inline-block;width:13px;height:13px;vertical-align:-2px;margin-right:4px;border:1px solid #6e7574;border-radius:3px}.gold{background:var(--gold)}.red{background:var(--red)}.green{background:var(--green)}.pending{color:var(--pending)}.done{color:var(--done)}.item{display:block;text-align:left;width:100%;margin:4px 0;font-size:13px}.links{display:flex;gap:10px;flex-wrap:wrap}.formula{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#f4f6f4;padding:8px}details{margin:7px 0}summary{cursor:pointer}p{margin:8px 0}#count{font-size:12px}
+@media(max-width:760px){main{display:block;height:auto}article{height:57vh;min-height:300px}aside{border:0;border-top:1px solid #cad2d1}nav{gap:6px}header{padding:12px 14px}}
+</style>
+<header><h1>Граф зависимостей диссертации</h1><p>Экстремальные значения инвариантов графа в некоторых классах графов · исправленная редакция</p></header>
+<nav><label>Раздел <select id="view"></select></label><label>Поиск <input id="search" type="search" placeholder="Номер или название"></label></nav>
+<main><article><div class="tools"><button id="plus" aria-label="Увеличить">+</button><button id="minus" aria-label="Уменьшить">−</button><button id="fit">Вписать</button><small id="count"></small></div><svg id="board" aria-label="Граф зависимостей"></svg>
+<div class="legend"><span><i class="swatch gold"></i>На защиту</span><span><i class="swatch red"></i>Ожидает доказательства</span><span><i class="swatch green"></i>Доказано в Lean</span><span>У золотых узлов статус показывает рамка.</span></div></article><aside id="side"></aside></main>
+<script id="data" type="application/json">{{DATA}}</script>
+<script id="layout" type="application/json">{{LAYOUT}}</script>
+<script id="proofs" type="application/json">{{PROOFS}}</script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const read = id => JSON.parse($(id).textContent);
+const {nodes, edges, groups, defence} = read('data');
+const views = read('layout').views, proofs = read('proofs');
+const board = $('board'), view = $('view'), side = $('side');
+const selectedEdges = new Map(edges.map(e => [e.a + '/' + e.b, e]));
+const kinds = {statement_ref:'Ссылка в формулировке', proof_ref:'Ссылка в доказательстве', reconstructed:'Зависимость по содержанию'};
+const ns = 'http://www.w3.org/2000/svg';
+let selected = null, box, drag;
+function el(tag, text, parent, cls) {
+  const e = document.createElement(tag);
+  if (text != null) e.textContent = text;
+  if (cls) e.className = cls;
+  parent.append(e);
+  return e;
+}
+function svg(tag, attrs, parent=board) {
+  const e = document.createElementNS(ns, tag);
+  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  parent.append(e);
+  return e;
+}
+function link(label, url, parent) {
+  const a = el('a', label, parent); a.href = url; a.target='_blank'; a.rel='noopener'; return a;
+}
+function button(key, parent) {
+  const n=nodes[key], b=el('button', n.short+' · '+n.title, parent, 'item');
+  b.onclick=()=>focusNode(key);
+}
+function linkDetails(e, destination) {
+  button(destination, side);
+  const details = el('details', null, side);
+  el('summary', kinds[e.kind], details);
+  for (const line of e.evidence) el('div', line, details, 'formula');
+}
+function overview() {
+  side.replaceChildren();
+  el('h2','Положения на защиту',side);
+  const n=defence.filter(k=>proofs[k]).length;
+  el('p','Доказано в Lean: '+n+' из '+defence.length+'.',side);
+  for(const key of defence) button(key, side);
+  el('p','Стрелка идёт от основания к результату. Выберите узел, чтобы открыть формулировку и перейти к источнику.',side);
+}
+function details(key) {
+  selected=key; side.replaceChildren(); const n=nodes[key], p=proofs[key];
+  board.querySelectorAll('.node').forEach(g=>g.classList.toggle('selected',g.dataset.key===key));
+  el('small', n.short+' · печатная с. '+n.page+(key==='claim7'?'–8':''),side);
+  el('h2',n.title,side);
+  el('strong',p?'Доказано в Lean':'Ожидает доказательства',side,p?'done':'pending');
+  const links=el('p',null,side,'links');
+  link('Страница PDF','thesis_corrected.pdf#page='+(Number(n.page)+1),links);
+  if(n.module) link('Формулировка Lean','../lean/'+n.module,links);
+  if(p) link('Доказательство Lean','../lean/'+p.file+'#L'+p.line,links);
+  const d=el('details',null,side); el('summary','Формулировка (TeX)',d);
+  el('div',n.statement,d,'formula');
+  if(n.claim) {const b=el('button','Все основания положения '+n.claim,side); b.onclick=()=>{view.value='d'+n.claim;draw();details(key)}}
+  for(const [field,other,title] of [['b','a','Опирается на'],['a','b','Используется в']]){
+    const related=edges.filter(e=>e[field]===key);
+    if(related.length){el('h3',title+' · '+related.length,side);related.forEach(e=>linkDetails(e,e[other]))}
+  }
+}
+function fit(){const [w,h]=views[view.value].size;box=[0,0,w,h];setBox()}
+function setBox(){board.setAttribute('viewBox',box.join(' '))}
+function draw(){
+  const v=views[view.value]; board.replaceChildren();
+  const defs=svg('defs',{}), mark=svg('marker',{id:'arrow',viewBox:'0 0 10 8',refX:0,refY:4,markerWidth:8,markerHeight:7,orient:'auto'},defs);
+  svg('path',{d:'M 0 0 L 9 4 L 0 8 Z',fill:'#586874'},mark);
+  for(const [a,b,points] of v.routes){
+    const edge=selectedEdges.get(a+'/'+b), kind=edge.kind;
+    const path='M '+points[0].join(' ')+' C '+points.slice(1).map(p=>p.join(' ')).join(' ');
+    svg('path',{d:path,fill:'none',stroke:'#586874','stroke-width':1.35,'stroke-dasharray':kind==='reconstructed'?'6 3':kind==='statement_ref'?'2 2':'','marker-end':'url(#arrow)'});
+  }
+  for(const [key,[x,y]] of Object.entries(v.positions)){
+    const n=nodes[key], p=proofs[key];
+    const g=svg('g',{class:'node',role:'button',tabindex:0,'data-key':key,'aria-label':n.short+' '+n.title+' · '+(p?'доказано':'ожидает доказательства')});
+    svg('title',{},g).textContent=n.short+' · '+n.title;
+    svg('rect',{x:x-104,y:y-28,width:208,height:56,rx:7,fill:n.claim?'#f6cc55':p?'#a3dbb3':'#f4b3ac',stroke:p?'#197146':'#b33532','stroke-width':n.claim?4:1.5},g);
+    const lines=[n.short+(p?'  ✓':'')].concat(n.lines);
+    lines.forEach((s,i)=>{svg('text',{x,y:y+(i-(lines.length-1)/2)*12+4,'text-anchor':'middle','font-size':11,'font-weight':i===0?700:400,fill:'#192c33'},g).textContent=s});
+    g.onclick=()=>details(key);
+    g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();details(key)}};
+  }
+  $('count').textContent=Object.keys(v.positions).length+' узлов · '+v.routes.length+' связей';
+  fit();
+}
+function focusNode(key){
+  if(!views[view.value].positions[key]){view.value='all';draw()}
+  $('search').value='';details(key);
+  const [x,y]=views[view.value].positions[key], w=540,h=w*board.clientHeight/board.clientWidth;
+  box=[x-w/2,y-h/2,w,h];setBox();
+}
+function zoom(f,x=box[0]+box[2]/2,y=box[1]+box[3]/2){
+  if(box[2]*f<130||box[2]*f>40000)return;
+  box=[x+(box[0]-x)*f,y+(box[1]-y)*f,box[2]*f,box[3]*f];setBox();
+}
+function localPoint(e){return new DOMPoint(e.clientX,e.clientY).matrixTransform(board.getScreenCTM().inverse())}
+board.onwheel=e=>{e.preventDefault();const p=localPoint(e);zoom(e.deltaY>0?1.16:1/1.16,p.x,p.y)};
+board.onpointerdown=e=>{if(e.target.closest('.node'))return;drag=localPoint(e);board.setPointerCapture(e.pointerId)};
+board.onpointermove=e=>{if(!drag)return;const p=localPoint(e);box[0]+=drag.x-p.x;box[1]+=drag.y-p.y;setBox()};
+board.onpointerup=board.onpointercancel=()=>{drag=null};
+$('fit').onclick=fit;$('plus').onclick=()=>zoom(.75);$('minus').onclick=()=>zoom(1/.75);
+view.add(new Option('Семь положений и их основания','defence'));
+defence.forEach((_,i)=>view.add(new Option('Положение '+(i+1)+' · все основания','d'+(i+1))));
+for(const [k,v] of Object.entries(groups))view.add(new Option('Глава '+k+' · '+v,k));
+view.add(new Option('Весь граф','all'));
+view.onchange=()=>{selected=null;$('search').value='';draw();overview()};
+$('search').oninput=e=>{const q=e.target.value.trim().toLowerCase();if(!q){overview();return}
+  const hits=Object.keys(nodes).filter(k=>[k,nodes[k].short,nodes[k].title].join(' ').toLowerCase().includes(q));
+  side.replaceChildren();el('h2','Найдено: '+hits.length,side);hits.forEach(k=>button(k,side));
+};
+draw();overview();
+</script>
+</html>

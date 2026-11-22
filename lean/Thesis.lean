@@ -6,3 +6,4 @@ import Thesis.WordMorphism
 import Thesis.WordPalindromes
 import Thesis.WordSlope
 import Thesis.WordFrequency
+import Thesis.PalindromeRecords

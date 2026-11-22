@@ -67,6 +67,12 @@ def read_graph():
                                        "начальных и конечных отрезков весов dᵢ − 1.")
     edges.append(dict(a="gutman_spine_value", b="lems001wap", kind="reconstructed",
                       evidence=["В доказательстве леммы 4.2.1 сравниваются суммы по разрезам хребта."]))
+    nodes["sigma_cut_bounds"] = dict(short="§ 3.3", title="Число пересечений одного и двух соседних разрезов",
+                                     page="30", chapter=3, statement="Каждый одиночный разрез рангов "
+                                     "пересекают как минимум два ребра цикла, а два соседних разреза "
+                                     "одновременно пересекает хотя бы одно ребро.")
+    edges.append(dict(a="sigma_cut_bounds", b="thmsigmin001", kind="reconstructed",
+                      evidence=["Доказательство теоремы 3.3.3, с. 30."]))
     assert all(e["a"] in nodes and e["b"] in nodes for e in edges)
     return dict(nodes=nodes, edges=edges, groups=data["groups"], defence=DEFENCE)
 

@@ -7,6 +7,10 @@
     "file": "Thesis/BipartiteBounds.lean",
     "theorem": "Thesis.Bipartite.claim6"
   },
+  "cor01sturmian": {
+    "file": "Thesis/WordSlope.lean",
+    "theorem": "Thesis.Words.characteristic_slope"
+  },
   "lem01length": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.morph_length"
@@ -22,6 +26,10 @@
   "thm01desub": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.word_morphism"
+  },
+  "thm01slopecf": {
+    "file": "Thesis/WordSlope.lean",
+    "theorem": "Thesis.Words.characteristic_slope"
   },
   "thm1sigmaindexbipartite01": {
     "file": "Thesis/BipartiteBounds.lean",

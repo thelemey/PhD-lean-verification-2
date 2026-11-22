@@ -61,6 +61,12 @@ def read_graph():
         edges.append(dict(a="spine_realization", b=target, kind="reconstructed",
                           evidence=["§ 1.2, с. 5. Каждый использованный порядок степеней "
                                     "реализуется гусеницей."]))
+    nodes["gutman_spine_value"] = dict(short="§ 4.1", title="Индекс Гутмана по префиксам хребта",
+                                       page="44", chapter=4, statement="Для полного списка степеней "
+                                       "хребта число вершин и индекс Гутмана выражаются через суммы "
+                                       "начальных и конечных отрезков весов dᵢ − 1.")
+    edges.append(dict(a="gutman_spine_value", b="lems001wap", kind="reconstructed",
+                      evidence=["В доказательстве леммы 4.2.1 сравниваются суммы по разрезам хребта."]))
     assert all(e["a"] in nodes and e["b"] in nodes for e in edges)
     return dict(nodes=nodes, edges=edges, groups=data["groups"], defence=DEFENCE)
 

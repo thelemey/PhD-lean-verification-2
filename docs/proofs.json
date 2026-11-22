@@ -47,6 +47,10 @@
     "file": "Thesis/SpinePath.lean",
     "theorem": "Thesis.Trees.tree_edge_count"
   },
+  "gutman_spine_value": {
+    "file": "Thesis/GutmanSpine.lean",
+    "theorem": "Thesis.Trees.gutman_spine"
+  },
   "lem01length": {
     "file": "Thesis/WordMorphism.lean",
     "theorem": "Thesis.Words.morph_length"

@@ -36,6 +36,17 @@ private theorem zigzag_ends (n : ℕ) :
   · left; simp [h,show (n+1)%2≠0 by omega,show (n+2)%2=0 by omega,show (n+2)%2≠1 by omega]
   · right; simp [h,show (n+1)%2=0 by omega,show (n+2)%2≠0 by omega,show (n+2)%2=1 by omega]
 
+/-- The two highest ranks are adjacent. The next zigzag subdivides exactly that edge. -/
+theorem zigzag_top_edge (n : ℕ) : ∃ (p t : List ℕ) (a b : ℕ),
+    ((a=n+1 ∧ b=n+2) ∨ (a=n+2 ∧ b=n+1)) ∧
+    zigzagRanks (n+2)=p++a::b::t ∧ zigzagRanks (n+3)=p++a::(n+3)::b::t := by
+  have base : zigzagRanks (n+2)=odds (n+2)++evens (n+2) := rfl
+  rcases zigzag_ends n with ⟨ho,he⟩ | ⟨ho,he⟩
+  · exact ⟨odds n,evens n,n+1,n+2,Or.inl ⟨rfl,rfl⟩,by simp [base,ho,he],
+      by simp [zigzag_insert (n+2),ho,he]⟩
+  · exact ⟨odds n,evens n,n+2,n+1,Or.inr ⟨rfl,rfl⟩,by simp [base,ho,he],
+      by simp [zigzag_insert (n+2),ho,he]⟩
+
 private theorem route_insert (W : ℕ → ℕ → ℤ) (a b u z v : ℕ) (s t : List ℕ) :
     route W a (s++u::z::v::t) b = route W a (s++u::v::t) b - W u v + W u z + W z v := by
   rw [route_split,route_split]

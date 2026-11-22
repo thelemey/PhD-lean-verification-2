@@ -51,6 +51,10 @@
     "file": "Thesis/SpinePath.lean",
     "theorem": "Thesis.Trees.tree_edge_count"
   },
+  "defence_sigma": {
+    "file": "Thesis/SigmaEquality.lean",
+    "theorem": "Thesis.Trees.claim4"
+  },
   "exgutlocal": {
     "file": "Thesis/GutmanExample.lean",
     "theorem": "Thesis.Trees.gutman_local_example"
@@ -150,6 +154,10 @@
   "thmsigmin": {
     "file": "Thesis/SigmaMinimum.lean",
     "theorem": "Thesis.Trees.sigma_minimum_formula"
+  },
+  "thmsigmin001": {
+    "file": "Thesis/SigmaEquality.lean",
+    "theorem": "Thesis.Trees.sigma_bound_equality"
   },
   "word_initial": {
     "file": "Thesis/WordMorphism.lean",
